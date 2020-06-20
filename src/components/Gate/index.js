@@ -6,7 +6,7 @@ export default function Gate() {
   const [active, setActive] = useState('')
   return (
     <div className={active} onClick={() => setActive('active')}>
-      <img style={{width: '48px'}} src={GateSVG} alt="gate"/>
+      <img style={{width: '128px'}} src={GateSVG} alt="gate"/>
     </div>
   )
 }

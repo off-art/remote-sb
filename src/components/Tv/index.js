@@ -7,7 +7,7 @@ import './tv.scss'
 export default function Tv() {
   return (
     <div>
-      <img style={{width: '48px'}} src={TVSvg} alt="computer"/>
+      <img style={{width: '128px'}} src={TVSvg} alt="computer"/>
     </div>
   )
 }

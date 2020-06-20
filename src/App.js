@@ -129,7 +129,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Выберайте локацию</h1>
+      <h1>Location selection</h1>
       <div className="App__wrapper">
         <div className="App__list">
           <ul>

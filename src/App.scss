@@ -17,8 +17,8 @@ h1 {
   }
 
   .active {
-    border: 1px solid #00ff14;
-    padding: 20px;
+    box-shadow: 10px 10px 10px #00ff14;
+    padding: 30px;
     border-radius: 50%;
     outline: none;
   }

@@ -7,7 +7,7 @@ import './light.scss'
 export default function Light() {
   return (
     <div>
-      <img style={{ width: '48px' }} src={LampSvg} alt="LampSvg" />
+      <img style={{ width: '128px' }} src={LampSvg} alt="LampSvg" />
     </div>
   )
 }
