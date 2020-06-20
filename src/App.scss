@@ -1,0 +1,25 @@
+h1 {
+  color: red;
+  text-align: center;
+}
+
+.App {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &__list ul {
+    display: flex;
+    align-items: flex-end;
+    li {
+      margin-right: 10px;
+    }
+  }
+
+  .active {
+    border: 1px solid #00ff14;
+    padding: 20px;
+    border-radius: 50%;
+    outline: none;
+  }
+}
