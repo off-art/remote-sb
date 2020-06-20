@@ -1,0 +1,3 @@
+export const BTN_CHANGE = 'BTN_CHANGE';
+export const CHANGE_LOCATION = 'CHANGE_LOCATION';
+export const CHANGE_DEVICES = 'CHANGE_DEVICES';
