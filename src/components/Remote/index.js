@@ -1,7 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import './Remote.scss'
+
 import { buttonChanger, changeDevices } from '../../redux/actions/actions'
+
+import './Remote.scss'
+
 function Remote() {
   const dispatch = useDispatch()
   const buttons = useSelector((state) => state.Reducer.buttons)
@@ -24,7 +27,7 @@ function Remote() {
           const { name, isWorks, count } = btn
           return (
             <div
-              style={isWorks ? { backgroundColor: 'red' } : null}
+              className={isWorks ? 'activebutton' : 'disableButton'}
               key={index}
               onClick={() => buttonHandler(index)}
             >

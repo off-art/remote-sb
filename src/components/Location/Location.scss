@@ -25,3 +25,16 @@
     justify-content: space-around;
   }
 }
+.button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+}

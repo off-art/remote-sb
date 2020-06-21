@@ -16,7 +16,7 @@
     font-size: 11px;
     cursor: pointer;
     height: 80px;
-    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
     border: none;
     outline: none;
     padding: 10px;
@@ -27,7 +27,14 @@
     justify-content: center;
     font-weight: 700;
     &:active {
-      background: darken($color: #c3cfe2, $amount: 2)
+      background: darken($color: #ffb199, $amount: 2)
    }
   }
+}
+.activebutton input {
+  background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
+}
+
+.disableButton input {
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
 }
