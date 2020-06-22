@@ -1,5 +1,7 @@
 const db = require('../../db/index')
 
+
+
 async function getLoacation() {
   let res = await db.query(`SELECT * FROM sber.location`)
   return res.rows
