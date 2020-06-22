@@ -3,7 +3,9 @@ import {
   CHANGE_LOCATION,
   CHANGE_DEVICES,
   CHANGE_LOCATIONS,
+  CHECK_POWER
 } from './actionsType'
+
 import axios from 'axios'
 
 export function buttonChanger(arr) {
@@ -24,6 +26,12 @@ export function changeDevices(arr) {
   return {
     type: CHANGE_DEVICES,
     payload: arr,
+  }
+}
+export function checkPower(arr) {
+  return {
+    type: CHECK_POWER,
+    payload: arr
   }
 }
 export function getDevices(id) {
@@ -49,6 +57,7 @@ export function getLocation() {
       .then((responce) => dispatch(changeLocation(responce.data.data)))
   }
 }
+
 
 export function powerChange(id, state) {
   return () => {

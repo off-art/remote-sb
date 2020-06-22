@@ -6,6 +6,7 @@ import {
   // buttonChanger,
   changeDevices,
   powerChange,
+  checkPower,
 } from '../../redux/actions/actions'
 
 import './Remote.scss'
@@ -26,6 +27,14 @@ function Remote() {
   //   dispatch(buttonChanger(arr))
   //   dispatch(changeDevices(arrDev))
   // }
+  
+    const buttonHandler = (index) => {
+      const arr = [...devices]
+      arr.map((dev) => {
+        return dev.id === index ? dev.power === !dev.power : dev.power
+      })
+      dispatch(checkPower(arr))
+    }
 
   useEffect(() => {
     if (devices.length > 0) {
@@ -44,77 +53,80 @@ function Remote() {
 
   return (
     <div className="remote remote__wrapper">
+      {console.log(devices)}
       {devices.map((dev) => {
         return (
           <div key={dev.id}>
-          <span>{dev.name}</span>
-          <div className='remote__buttons'  >
-            
-
-            {btns && btns[dev.id].power ? (
-              <input
-                className={
-                  btns[dev.id].statePower
-                    ? ' remote__button activebutton'
-                    : 'remote__button disableButton'
-                }
-                onClick={() => {
-                  dispatch(powerChange(dev.id, !btns[dev.id].statePower))
-                  let test = dev.id
-                  setBtn({
-                    ...btns,
-                    [test]: {
-                      ...btns[test],
-                      statePower: !btns[dev.id].statePower,
-                    },
-                  })
-                }}
-                type="button"
-                value="Power"
-              />
-            ) : null}
-            {btns && btns[dev.id].isopen ? (
-              <input
-                onClick={() => {
-                  dispatch(powerChange(dev.id, !btns[dev.id].stateIsOpen))
-                  let test = dev.id
-                  setBtn({
-                    ...btns,
-                    [test]: {
-                      ...btns[test],
-                      stateIsOpen: !btns[dev.id].stateIsOpen
-                    },
-                  })
-                }}
-                className={
-                  btns[dev.id].stateIsOpen
-                    ? ' remote__button activebutton'
-                    : 'remote__button disableButton'
-                }
-                type="button"
-                value="Open"
-              />
-            ) : null}
-            {btns && btns[dev.id].volume ? (
-              <input className={
-                  btns[dev.id].stateVolume
-                    ? ' remote__button activebutton'
-                    : 'remote__button disableButton'
-                } 
-                onClick={() => {
-                  dispatch(powerChange(dev.id, !btns[dev.id].stateVolume))
-                  let test = dev.id
-                  setBtn({
-                    ...btns,
-                    [test]: {
-                      ...btns[test],
-                      stateVolume: !btns[dev.id].stateVolume
-                    },
-                  })
-                }}
-                type="button" value="Volume"/>
-            ) : null}
-          </div>
+            <span>{dev.name}</span>
+            <div className="remote__buttons">
+              {btns && btns[dev.id].power ? (
+                <input
+                  className={
+                    btns[dev.id].statePower
+                      ? ' remote__button activebutton'
+                      : 'remote__button disableButton'
+                  }
+                  onClick={() => {
+                    dispatch(powerChange(dev.id, !btns[dev.id].statePower))
+                    let test = dev.id
+                    setBtn({
+                      ...btns,
+                      [test]: {
+                        ...btns[test],
+                        statePower: !btns[dev.id].statePower,
+                      },
+                    })
+                    dispatch(buttonHandler(dev.id))
+                  }}
+                  type="button"
+                  value="Power"
+                />
+              ) : null}
+              {btns && btns[dev.id].isopen ? (
+                <input
+                  onClick={() => {
+                    dispatch(powerChange(dev.id, !btns[dev.id].stateIsOpen))
+                    let test = dev.id
+                    setBtn({
+                      ...btns,
+                      [test]: {
+                        ...btns[test],
+                        stateIsOpen: !btns[dev.id].stateIsOpen,
+                      },
+                    })
+                  }}
+                  className={
+                    btns[dev.id].stateIsOpen
+                      ? ' remote__button activebutton'
+                      : 'remote__button disableButton'
+                  }
+                  type="button"
+                  value="Open"
+                />
+              ) : null}
+              {btns && btns[dev.id].volume ? (
+                <input
+                  className={
+                    btns[dev.id].stateVolume
+                      ? ' remote__button activebutton'
+                      : 'remote__button disableButton'
+                  }
+                  onClick={() => {
+                    dispatch(powerChange(dev.id, !btns[dev.id].stateVolume))
+                    let test = dev.id
+                    setBtn({
+                      ...btns,
+                      [test]: {
+                        ...btns[test],
+                        stateVolume: !btns[dev.id].stateVolume,
+                      },
+                    })
+                  }}
+                  type="button"
+                  value="Volume"
+                />
+              ) : null}
+            </div>
           </div>
         )
       })}

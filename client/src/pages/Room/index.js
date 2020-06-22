@@ -8,7 +8,7 @@ import {
 import Location from '../../components/Location'
 
 
-export default function Garage(props) {
+export default function Room(props) {
   const dispatch = useDispatch()
   
   const locations = useSelector((state) => state.Reducer.locations)

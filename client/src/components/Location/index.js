@@ -34,10 +34,11 @@ export default function Location() {
           <div className="location__elements">
             {devices &&
               devices.map((dev) => {
-                const { id, pic, name, isPower } = dev
+                
+                const { id, pic, name, power } = dev
                 return (
                   <Device
-                    isPower={isPower}
+                    power={power}
                     pic={pic}
                     name={name}
                     key={id}

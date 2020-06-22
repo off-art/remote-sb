@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const index = require('./routes/index')
+const main = require('./routes/index')
 const path = require('path')
 
 app.use(cors())
@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/', index)
+app.use('/', main)
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.listen(3001, () => {

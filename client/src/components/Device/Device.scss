@@ -4,12 +4,12 @@
   border-radius: 50%;
   outline: none;
   transition: all .7s ease-in-out;
-  transform: rotate(360deg)
+  transform: rotate(360deg) scale(.6)
 }
 .deactivedevice {
   padding: 30px;
   border-radius: 50%;
-  box-shadow: inset 0px 0px 20px 0px #ff0000;
+  // box-shadow: inset 0px 0px 20px 0px #ff0000;
   transition: all .7s ease-in-out;
   transform: rotate(0deg) scale(.6)
 }

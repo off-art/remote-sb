@@ -3,9 +3,9 @@ import Remote from '../../assets/img/remote-control.svg'
 import './Device.scss'
 import { Link } from 'react-router-dom'
 
-export default function Device({ isPower, pic, name, id }) {
+export default function Device({ power, pic, name, id }) {
   return (
-    <div className={isPower ? 'activeDevice' : 'deactivedevice'}>
+    <div className={power ? 'activeDevice' : 'deactivedevice'}>
       <img
         style={{ width: '128px' }}
         src={`http://localhost:3001/${pic}`}
@@ -20,7 +20,7 @@ export default function Device({ isPower, pic, name, id }) {
             top: '30%',
           }}
           src={Remote}
-          alt=""
+          alt="Remote"
         />
       </Link>
     </div>
