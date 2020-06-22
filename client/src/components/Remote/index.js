@@ -15,6 +15,7 @@ function Remote() {
   const dispatch = useDispatch()
   // const buttons = useSelector((state) => state.Reducer.buttons)
   const devices = useSelector((state) => state.Reducer.devices)
+  const reduser = useSelector((state) => state.Reducer)
 
   const [btns, setBtn] = useState(false)
 
@@ -27,14 +28,37 @@ function Remote() {
   //   dispatch(buttonChanger(arr))
   //   dispatch(changeDevices(arrDev))
   // }
-  
-    const buttonHandler = (index) => {
-      const arr = [...devices]
-      arr.map((dev) => {
-        return dev.id === index ? dev.power === !dev.power : dev.power
-      })
-      dispatch(checkPower(arr))
+  const [test, settest] = useState([])
+
+  const buttonHandler = (id) => {
+    const arr = [...devices]
+    const test = arr.map((dev) => {
+      return dev.id === id
+        ? { ...dev, power: !dev.power }
+        : { ...dev, power: dev.power }
+    })
+    settest(test)
+
+    console.log('-->' , test)
+    // dispatch(checkPower(test))
+  }
+  useEffect(() => {
+    if(test.length > 0) {
+      dispatch(checkPower(test))
     }
+  }, [test])
+
+  const hendleClick = (dev) => {
+    dispatch(powerChange(dev.id, !btns[dev.id].statePower))
+    setBtn({
+      ...btns,
+      [dev.id]: {
+        ...btns[dev.id],
+        statePower: !btns[dev.id].statePower,
+      },
+    })
+    buttonHandler(dev.id)
+  }
 
   useEffect(() => {
     if (devices.length > 0) {
@@ -44,16 +68,16 @@ function Remote() {
         })
         .then((res) => setBtn(res.data.data))
     }
-    return () => {
-      if (devices.length > 0) {
-        dispatch(changeDevices([]))
-      }
-    }
-  }, [devices, dispatch])
+  //   return () => {
+  //     if (reduser) {
+  //       dispatch(changeDevices([]))
+  //     }
+  //   }
+   }, [devices, dispatch, reduser])
 
   return (
     <div className="remote remote__wrapper">
-      {console.log(devices)}
+      {/* {console.log(btns)} */}
       {devices.map((dev) => {
         return (
           <div key={dev.id}>
@@ -66,18 +90,7 @@ function Remote() {
                       ? ' remote__button activebutton'
                       : 'remote__button disableButton'
                   }
-                  onClick={() => {
-                    dispatch(powerChange(dev.id, !btns[dev.id].statePower))
-                    let test = dev.id
-                    setBtn({
-                      ...btns,
-                      [test]: {
-                        ...btns[test],
-                        statePower: !btns[dev.id].statePower,
-                      },
-                    })
-                    dispatch(buttonHandler(dev.id))
-                  }}
+                  onClick={() => hendleClick(dev)}
                   type="button"
                   value="Power"
                 />

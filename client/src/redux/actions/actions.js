@@ -28,12 +28,7 @@ export function changeDevices(arr) {
     payload: arr,
   }
 }
-export function checkPower(arr) {
-  return {
-    type: CHECK_POWER,
-    payload: arr
-  }
-}
+
 export function getDevices(id) {
   return (dispatch) => {
     axios
@@ -65,5 +60,11 @@ export function powerChange(id, state) {
       id,
       state,
     })
+  }
+}
+export function checkPower(arr) {
+  return {
+    type: CHECK_POWER,
+    payload: arr
   }
 }
