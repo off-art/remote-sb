@@ -3,7 +3,7 @@ import {
   CHANGE_LOCATION,
   CHANGE_DEVICES,
   CHANGE_LOCATIONS,
-  CHECK_POWER
+  CHECK_POWER,
 } from '../actions/actionsType'
 
 const initialState = {
@@ -38,7 +38,7 @@ const state = (state = initialState, action) => {
     case CHECK_POWER:
       return {
         ...state,
-        devices: action.payload
+        devices: action.payload,
       }
     default:
       break

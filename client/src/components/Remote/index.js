@@ -2,48 +2,29 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 
-import {
-  // buttonChanger,
-  changeDevices,
-  powerChange,
-  checkPower,
-} from '../../redux/actions/actions'
+import { powerChange, checkPower } from '../../redux/actions/actions'
 
 import './Remote.scss'
 
 function Remote() {
   const dispatch = useDispatch()
-  // const buttons = useSelector((state) => state.Reducer.buttons)
   const devices = useSelector((state) => state.Reducer.devices)
   const reduser = useSelector((state) => state.Reducer)
 
   const [btns, setBtn] = useState(false)
-
-  // const buttonHandler = (index) => {
-  //   const arr = [...buttons]
-  //   const arrDev = devices.map((dev) =>
-  //     dev.id === arr[index].controlId ? arr[index].action(dev) : dev,
-  //   )
-  //   arr[index].isWorks = !arr[index].isWorks
-  //   dispatch(buttonChanger(arr))
-  //   dispatch(changeDevices(arrDev))
-  // }
   const [test, settest] = useState([])
 
   const buttonHandler = (id) => {
-    const arr = [...devices]
-    const test = arr.map((dev) => {
-      return dev.id === id
-        ? { ...dev, power: !dev.power }
-        : { ...dev, power: dev.power }
-    })
-    settest(test)
-
-    console.log('-->' , test)
-    // dispatch(checkPower(test))
+    settest(
+      [...devices].map((dev) => {
+        return dev.id === id
+          ? { ...dev, power: !dev.power }
+          : { ...dev, power: dev.power }
+      }),
+    )
   }
   useEffect(() => {
-    if(test.length > 0) {
+    if (test.length > 0) {
       dispatch(checkPower(test))
     }
   }, [test])
@@ -68,16 +49,15 @@ function Remote() {
         })
         .then((res) => setBtn(res.data.data))
     }
-  //   return () => {
-  //     if (reduser) {
-  //       dispatch(changeDevices([]))
-  //     }
-  //   }
-   }, [devices, dispatch, reduser])
+    //   return () => {
+    //     if (reduser) {
+    //       dispatch(changeDevices([]))
+    //     }
+    //   }
+  }, [devices, dispatch, reduser])
 
   return (
     <div className="remote remote__wrapper">
-      {/* {console.log(btns)} */}
       {devices.map((dev) => {
         return (
           <div key={dev.id}>

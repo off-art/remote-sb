@@ -3,7 +3,7 @@ import {
   CHANGE_LOCATION,
   CHANGE_DEVICES,
   CHANGE_LOCATIONS,
-  CHECK_POWER
+  CHECK_POWER,
 } from './actionsType'
 
 import axios from 'axios'
@@ -53,7 +53,6 @@ export function getLocation() {
   }
 }
 
-
 export function powerChange(id, state) {
   return () => {
     axios.post('http://localhost:3001/pushbutton', {
@@ -65,6 +64,6 @@ export function powerChange(id, state) {
 export function checkPower(arr) {
   return {
     type: CHECK_POWER,
-    payload: arr
+    payload: arr,
   }
 }
