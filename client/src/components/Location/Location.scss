@@ -1,0 +1,45 @@
+.location {
+  // border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 600px;
+  width: 90%;
+  margin: 0 auto;
+  &__window {
+    display: flex;
+  }
+  &__remote,
+  &__plan {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  &__remote {
+    flex-basis: 25%;
+    margin-right: 15px;
+  }
+  &__plan {
+    flex-basis: 75%;
+  }
+  &__elements {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+.button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+}

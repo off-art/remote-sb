@@ -1,0 +1,51 @@
+.remote {
+  padding: 10px;
+  box-shadow: 0px 0px 10px 1px #5d9cec;
+  border: none;
+  border-radius: 5px;
+  // height: 27rem;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  span {
+    text-transform: uppercase;
+  }
+  &__buttons {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+  }
+  &__button {
+    width: 40px;
+    font-size: 11px;
+    cursor: pointer;
+    height: 40px;
+    background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    &:active {
+      background: darken($color: #ffb199, $amount: 2)
+   }
+   
+  }
+}
+.activebutton {
+  background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
+}
+
+.disableButton  {
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+}
