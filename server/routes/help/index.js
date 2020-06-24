@@ -130,6 +130,14 @@ async function powerChange(id, state) {
   `)
 }
 
+async function openChange(id, state) {
+  await db.query(`
+    UPDATE buttons.isopen SET isopen = '${state}'
+    WHERE
+    deviceid = '${id}' 
+  `)
+}
+
 module.exports = {
   getLoacation,
   getDevices,
@@ -137,4 +145,6 @@ module.exports = {
   buttonStatus,
   getButtons,
   powerChange,
+  openChange,
+  openChange
 }

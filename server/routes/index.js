@@ -5,6 +5,7 @@ let {
   buttonStatus,
   getButtons,
   powerChange,
+  openChange
 } = require('../routes/help')
 
 let express = require('express')
@@ -37,9 +38,14 @@ router.post('/getbuttons', async function (req, res, next) {
   let data = await getButtons(req.body.devices)
   res.json({ data })
 })
-router.post('/pushbutton', async function (req, res, next) {
+router.post('/pushbuttonpower', async function (req, res, next) {
   let data = {}
   await powerChange(req.body.id, req.body.state)
+  res.json({ data })
+})
+router.post('/pushbuttonopen', async function (req, res, next) {
+  let data = {}
+  await openChange(req.body.id, req.body.state)
   res.json({ data })
 })
 

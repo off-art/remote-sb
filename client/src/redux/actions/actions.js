@@ -55,12 +55,21 @@ export function getLocation() {
 
 export function powerChange(id, state) {
   return () => {
-    axios.post('http://localhost:3001/pushbutton', {
+    axios.post('http://localhost:3001/pushbuttonpower', {
       id,
       state,
     })
   }
 }
+export function openChange(id, state) {
+  return () => {
+    axios.post('http://localhost:3001/pushbuttonopen', {
+      id,
+      state,
+    })
+  }
+}
+
 export function checkPower(arr) {
   return {
     type: CHECK_POWER,
