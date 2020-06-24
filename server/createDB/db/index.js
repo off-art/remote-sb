@@ -17,21 +17,21 @@ const createDB = async () => {
   `)
   await db.query(`
     CREATE TABLE buttons.volume ( 
-    volume Integer DEFAULT 0 NOT NULL,
+    volume Boolean NOT NULL,
     deviceid Integer NOT NULL );
   `)
   await db.query(`
-    CREATE SCHEMA test;
+    CREATE SCHEMA sber;
   `)
   await db.query(`
-    CREATE TABLE test.location ( 
+    CREATE TABLE sber.location ( 
     id Integer DEFAULT 0 NOT NULL,
     name Character Varying NOT NULL,
     img Character Varying );
   `)
 
   await db.query(`
-    CREATE TABLE test.devices ( 
+    CREATE TABLE sber.devices ( 
     id Integer DEFAULT 0 NOT NULL,
     name Character Varying NOT NULL,
     location_id Integer,

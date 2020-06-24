@@ -15,7 +15,6 @@ async function getDevices(id) {
     WHERE
     location_id = '${id}'
   `)
-  console.log(res.rows)
   return res.rows
 }
 
