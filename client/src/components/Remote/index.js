@@ -6,6 +6,7 @@ import {
   powerChange,
   checkPower,
   openChange,
+  volumeChange,
   // changeDevices,
 } from '../../redux/actions/actions'
 
@@ -29,8 +30,8 @@ function Remote() {
   const buttonHandlerOpen = (id) => {
     const arr = [...devices].map((dev) => {
       return dev.id === id
-      ? { ...dev, open: !dev.open }
-      : { ...dev, open: dev.open }
+        ? { ...dev, isopen: !dev.isopen }
+        : { ...dev, isopen: dev.isopen }
     })
     settest(arr)
   }
@@ -42,12 +43,45 @@ function Remote() {
     })
     settest(arr)
   }
+  const handleClickPower = (dev) => {
+    dispatch(powerChange(dev.id, !btns[dev.id].statePower))
+    setBtn({
+      ...btns,
+      [dev.id]: {
+        ...btns[dev.id],
+        statePower: !btns[dev.id].statePower,
+      },
+    })
+    buttonHandlerPower(dev.id)
+  }
+  const handleClickOpen = (dev) => {
+    setBtn({
+      ...btns,
+      [dev.id]: {
+        ...btns[dev.id],
+        stateIsOpen: !btns[dev.id].stateIsOpen,
+      },
+    })
+    dispatch(openChange(dev.id, !btns[dev.id].stateIsOpen))
+    buttonHandlerOpen(dev.id)
+  }
+  const handleClickVolume = (dev) => {
+    setBtn({
+      ...btns,
+      [dev.id]: {
+        ...btns[dev.id],
+        stateVolume: !btns[dev.id].stateVolume,
+      },
+    })
+    dispatch(volumeChange(dev.id, !btns[dev.id].stateVolume))
+    buttonHandlerVolume(dev.id)
+  }
 
   useEffect(() => {
     if (test.length > 0) {
       dispatch(checkPower(test))
     }
-  }, [test])
+  }, [dispatch, test])
 
   useEffect(() => {
     if (devices.length > 0) {
@@ -72,45 +106,21 @@ function Remote() {
             <span>{dev.name}</span>
             <div className="remote__buttons">
               {btns && btns[dev.id].power ? (
-                
                 <input
                   className={
                     btns[dev.id].statePower
                       ? ' remote__button activebutton'
                       : 'remote__button disableButton'
                   }
-                  onClick={() => {
-                    dispatch(powerChange(dev.id, !btns[dev.id].statePower))
-                    let test = dev.id
-                    setBtn({
-                      ...btns,
-                      [test]: {
-                        ...btns[test],
-                        statePower: !btns[dev.id].statePower,
-                      },
-                    })
-                    buttonHandlerPower(dev.id)
-                  }}
+                  onClick={() => handleClickPower(dev)}
                   type="button"
                   value="Power"
                 />
               ) : null}
 
-              
               {btns && btns[dev.id].isopen ? (
                 <input
-                  onClick={() => {
-                    let test = dev.id
-                    setBtn({
-                      ...btns,
-                      [test]: {
-                        ...btns[test],
-                        stateIsOpen: !btns[dev.id].stateIsOpen,
-                      },
-                    })
-                    dispatch(openChange(dev.id, !btns[dev.id].stateIsOpen))
-                    buttonHandlerOpen(dev.id) //визуал
-                  }}
+                  onClick={() => handleClickOpen(dev)}
                   className={
                     btns[dev.id].stateIsOpen
                       ? ' remote__button activebutton'
@@ -120,6 +130,7 @@ function Remote() {
                   value="Open"
                 />
               ) : null}
+
               {btns && btns[dev.id].volume ? (
                 <input
                   className={
@@ -127,18 +138,7 @@ function Remote() {
                       ? ' remote__button activebutton'
                       : 'remote__button disableButton'
                   }
-                  onClick={() => {
-                    // dispatch(powerChange(dev.id, !btns[dev.id].stateVolume))
-                    let test = dev.id
-                    setBtn({
-                      ...btns,
-                      [test]: {
-                        ...btns[test],
-                        stateVolume: !btns[dev.id].stateVolume,
-                      },
-                    })
-                    buttonHandlerVolume(dev.id)
-                  }}
+                  onClick={() => handleClickVolume(dev)}
                   type="button"
                   value="Volume"
                 />

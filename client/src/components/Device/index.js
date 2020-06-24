@@ -7,17 +7,18 @@ import './Device.scss'
 export default function Device({ power, pic, name, id, open, volume }) {
   return (
     <div>
-    {console.log(open)}
-      <span className={cn({
-        openDoor: open,
-        closeDoor: !open,
-      })}>Дверь открыта</span>
+      <span
+        className={cn({
+          openDoor: open,
+          closeDoor: !open,
+        })}
+      >
+        {open ? 'Дверь открыта' : 'Дверь закрыта'}
+      </span>
       <div
         className={cn({
           activeDevice: power,
           deactivedevice: !power,
-          
-          volume: volume,
         })}
       >
         <img
@@ -25,6 +26,7 @@ export default function Device({ power, pic, name, id, open, volume }) {
           src={`http://localhost:3001/${pic}`}
           alt={name}
         />
+
         <Link to={`create/btn/${id}`}>
           <img
             style={{
@@ -38,6 +40,12 @@ export default function Device({ power, pic, name, id, open, volume }) {
           />
         </Link>
       </div>
+      <span className={
+        cn({
+          openDoor: volume,
+          closeDoor: !volume
+        })
+      }>Volume On</span>
     </div>
   )
 }

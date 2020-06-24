@@ -38,6 +38,9 @@ export function getDevices(id) {
       .then((responce) => dispatch(changeDevices(responce.data.data)))
   }
 }
+
+
+
 export function changeLocation(locations) {
   return {
     type: CHANGE_LOCATIONS,
@@ -64,6 +67,14 @@ export function powerChange(id, state) {
 export function openChange(id, state) {
   return () => {
     axios.post('http://localhost:3001/pushbuttonopen', {
+      id,
+      state,
+    })
+  }
+}
+export function volumeChange(id, state) {
+  return () => {
+    axios.post('http://localhost:3001/pushbuttonvolume', {
       id,
       state,
     })

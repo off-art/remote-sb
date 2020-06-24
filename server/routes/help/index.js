@@ -1,7 +1,5 @@
 const db = require('../../db/index')
 
-
-
 async function getLoacation() {
   let res = await db.query(`SELECT * FROM sber.location`)
   return res.rows
@@ -9,14 +7,18 @@ async function getLoacation() {
 
 async function getDevices(id) {
   let res = await db.query(`
-    SELECT * , buttons.power.power
+    SELECT * , buttons.power.power, buttons.isopen.isopen, buttons.volume.volume
     FROM sber.devices
     JOIN buttons.power ON buttons.power.deviceid = id
+    JOIN buttons.isopen ON buttons.isopen.deviceid = id
+    JOIN buttons.volume ON buttons.volume.deviceid = id
     WHERE
     location_id = '${id}'
   `)
+  console.log(res.rows)
   return res.rows
 }
+
 async function buttonStatus(id) {
   let obj = {}
   let power = await db.query(`
@@ -137,6 +139,13 @@ async function openChange(id, state) {
     deviceid = '${id}' 
   `)
 }
+async function volumeChange(id, state) {
+  await db.query(`
+    UPDATE buttons.volume SET volume = '${state}'
+    WHERE
+    deviceid = '${id}' 
+  `)
+}
 
 module.exports = {
   getLoacation,
@@ -145,6 +154,7 @@ module.exports = {
   buttonStatus,
   getButtons,
   powerChange,
+  volumeChange,
   openChange,
-  openChange
+  openChange,
 }

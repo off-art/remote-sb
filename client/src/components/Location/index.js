@@ -20,9 +20,7 @@ export default function Location() {
       <h1 style={{ textTransform: 'uppercase', fontSize: '50px' }}>
         {location}
       </h1>
-      <div
-        className="location location__window"
-      >
+      <div className="location location__window">
         <div className="location__remote">
           <h1>Remote control Panel</h1>
           <hr />
@@ -34,7 +32,7 @@ export default function Location() {
           <div className="location__elements">
             {devices &&
               devices.map((dev) => {
-                const { id, pic, name, power, open, volume } = dev
+                const { id, pic, name, power, isopen, volume } = dev
                 return (
                   <Device
                     power={power}
@@ -42,7 +40,7 @@ export default function Location() {
                     name={name}
                     key={id}
                     id={id}
-                    open={open}
+                    open={isopen}
                     volume={volume}
                   />
                 )
