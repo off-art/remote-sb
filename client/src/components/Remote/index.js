@@ -19,27 +19,11 @@ function Remote() {
   const [btns, setBtn] = useState(false)
   const [test, settest] = useState([])
 
-  const buttonHandlerPower = (id) => {
+  const buttonHandler = (id, key) => {
     const arr = [...devices].map((dev) => {
       return dev.id === id
-        ? { ...dev, power: !dev.power }
-        : { ...dev, power: dev.power }
-    })
-    settest(arr)
-  }
-  const buttonHandlerOpen = (id) => {
-    const arr = [...devices].map((dev) => {
-      return dev.id === id
-        ? { ...dev, isopen: !dev.isopen }
-        : { ...dev, isopen: dev.isopen }
-    })
-    settest(arr)
-  }
-  const buttonHandlerVolume = (id) => {
-    const arr = [...devices].map((dev) => {
-      return dev.id === id
-        ? { ...dev, volume: !dev.volume }
-        : { ...dev, volume: dev.volume }
+        ? { ...dev, [key]: !dev[key] }
+        : { ...dev, [key]: dev[key] }
     })
     settest(arr)
   }
@@ -52,7 +36,7 @@ function Remote() {
         statePower: !btns[dev.id].statePower,
       },
     })
-    buttonHandlerPower(dev.id)
+    buttonHandler(dev.id, 'power')
   }
   const handleClickOpen = (dev) => {
     setBtn({
@@ -63,7 +47,7 @@ function Remote() {
       },
     })
     dispatch(openChange(dev.id, !btns[dev.id].stateIsOpen))
-    buttonHandlerOpen(dev.id)
+    buttonHandler(dev.id, 'isopen')
   }
   const handleClickVolume = (dev) => {
     setBtn({
@@ -74,7 +58,7 @@ function Remote() {
       },
     })
     dispatch(volumeChange(dev.id, !btns[dev.id].stateVolume))
-    buttonHandlerVolume(dev.id)
+    buttonHandler(dev.id, 'volume')
   }
 
   useEffect(() => {
@@ -92,9 +76,9 @@ function Remote() {
         .then((res) => setBtn(res.data.data))
     }
     // return () => {
-    //   if (location.length === 0) {
-    //     dispatch(changeDevices([]))
-    //   }
+    // if (devices.length === 0) {
+    //   dispatch(changeDevices([]))
+    // }
     // }
   }, [devices])
 
