@@ -15,7 +15,6 @@ import './Remote.scss'
 function Remote() {
   const dispatch = useDispatch()
   const devices = useSelector((state) => state.Reducer.devices)
-
   const [btns, setBtn] = useState(false)
   const [test, settest] = useState([])
 
@@ -29,34 +28,13 @@ function Remote() {
   }
   const handleClickPower = (dev) => {
     dispatch(powerChange(dev.id, !btns[dev.id].statePower))
-    setBtn({
-      ...btns,
-      [dev.id]: {
-        ...btns[dev.id],
-        statePower: !btns[dev.id].statePower,
-      },
-    })
     buttonHandler(dev.id, 'power')
   }
   const handleClickOpen = (dev) => {
-    setBtn({
-      ...btns,
-      [dev.id]: {
-        ...btns[dev.id],
-        stateIsOpen: !btns[dev.id].stateIsOpen,
-      },
-    })
     dispatch(openChange(dev.id, !btns[dev.id].stateIsOpen))
     buttonHandler(dev.id, 'isopen')
   }
   const handleClickVolume = (dev) => {
-    setBtn({
-      ...btns,
-      [dev.id]: {
-        ...btns[dev.id],
-        stateVolume: !btns[dev.id].stateVolume,
-      },
-    })
     dispatch(volumeChange(dev.id, !btns[dev.id].stateVolume))
     buttonHandler(dev.id, 'volume')
   }
@@ -76,9 +54,9 @@ function Remote() {
         .then((res) => setBtn(res.data.data))
     }
     // return () => {
-    // if (devices.length === 0) {
-    //   dispatch(changeDevices([]))
-    // }
+    //   if (devices.length === 0) {
+    //     dispatch(changeDevices([]))
+    //   }
     // }
   }, [devices])
 

@@ -12,9 +12,10 @@ export default function Links() {
           <ul>
             {locations.map((loc) => {
               const { name, img, id } = loc
+              
               return (
                 <li key={id}>
-                  <Link exact to={name}>
+                  <Link to={name}>
                     <img
                       style={{ height: '256px' }}
                       src={`http://localhost:3001/${img}`}
