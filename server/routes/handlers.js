@@ -9,49 +9,63 @@ let {
   volumeChange
 } = require('./help')
 
-let express = require('express')
-
-let router = express.Router()
-
-router.get('/', async function (req, res, next) {
+async function getLoc(req, res, next) {
   let data = await getLoacation()
   res.json({ data })
-})
+}
 
-router.get('/:id', async function (req, res, next) {
+async function getDev (req, res, next) {
   let data = await getDevices(req.params.id)
   res.json({ data })
-})
-router.post('/getdevices', async function (req, res, next) {
-  let data = await getDevices(req.body.id)
+}
+async function getDevs (req, res, next) {
+  let data = await getDevices(req.params.id)
   res.json({ data })
-})
-router.post('/setbuttons', async function (req, res, next) {
+}
+
+async function setButt (req, res, next) {
   let data = {}
   await setButtons(req.body.isChange, req.body.id)
   res.json({ data })
-})
-router.post('/buttonstatus', async function (req, res, next) {
+}
+
+async function statusBtn (req, res, next) {
   let data = await buttonStatus(req.body.id)
   res.json({ data })
-})
-router.post('/getbuttons', async function (req, res, next) {
+}
+
+async function getButt (req, res, next) {
   let data = await getButtons(req.body.devices)
   res.json({ data })
-})
-router.post('/pushbuttonpower', async function (req, res, next) {
+}
+
+async function pwrchange (req, res, next) {
   let data = {}
   await powerChange(req.body.id, req.body.state)
   res.json({ data })
-})
-router.post('/pushbuttonopen', async function (req, res, next) {
+}
+
+async function  openChan(req, res, next) {
   let data = {}
   await openChange(req.body.id, req.body.state)
   res.json({ data })
-})
-router.post('/pushbuttonvolume', async function (req, res, next) {
+}
+
+async function volChange(req, res, next) {
   let data = {}
   await volumeChange(req.body.id, req.body.state)
   res.json({ data })
-})
-module.exports = router
+}
+
+
+module.exports = {
+  getLoc,
+  getDev,
+  setButt,
+  statusBtn,
+  getButt,
+  pwrchange,
+  openChan,
+  volChange,
+  getDevs
+}

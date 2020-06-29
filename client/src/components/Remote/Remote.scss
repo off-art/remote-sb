@@ -3,7 +3,6 @@
   box-shadow: 0px 0px 10px 1px #5d9cec;
   border: none;
   border-radius: 5px;
-  // height: 27rem;
   width: 90%;
   margin: 0 auto;
   margin-top: 20px;
@@ -15,11 +14,17 @@
   span {
     text-transform: uppercase;
   }
+  &__wrapper {
+    background: url('https://css-tricks.com/examples/RoundButtons/images/bg.png');
+  }
   &__buttons {
-    border: 1px solid #ccc;
+    // border: 1px solid #ccc;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     padding: 5px;
+    
     border-radius: 5px;
     display: flex;
+    margin-bottom: 5px;
   }
   &__button {
     width: 40px;
@@ -37,7 +42,9 @@
     justify-content: center;
     font-weight: 700;
     &:active {
-      background: darken($color: #ffb199, $amount: 2)
+      // background: darklae($color: #ffb199, $amount: 2);
+      // background: lighten($color: #ffb199, $amount: 2);
+      box-shadow: 0px 3px 4px #aaa inset, 0px 2px 3px #fff;
    }
    
   }
