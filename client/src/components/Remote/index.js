@@ -67,6 +67,7 @@ function Remote() {
           <div key={dev.id}>
             <span>{dev.name}</span>
             <div className="remote__buttons">
+            
               {btns && btns[dev.id].power ? (
                 <input
                   className={

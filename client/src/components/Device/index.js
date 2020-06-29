@@ -1,7 +1,9 @@
 import React from 'react'
-import Remote from '../../assets/img/remote-control.svg'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
+
+import Remote from '../../assets/img/remote-control.svg'
+
 import './Device.scss'
 
 export default function Device({ power, pic, name, id, open, volume }) {

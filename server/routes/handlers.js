@@ -18,10 +18,6 @@ async function getDev (req, res, next) {
   let data = await getDevices(req.params.id)
   res.json({ data })
 }
-async function getDevs (req, res, next) {
-  let data = await getDevices(req.params.id)
-  res.json({ data })
-}
 
 async function setButt (req, res, next) {
   let data = {}
@@ -67,5 +63,4 @@ module.exports = {
   pwrchange,
   openChan,
   volChange,
-  getDevs
 }

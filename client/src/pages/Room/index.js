@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import {
   changeLocations,
   getDevices,
 } from '../../redux/actions/actions'
-
 import Location from '../../components/Location'
 
 
 export default function Room(props) {
   const dispatch = useDispatch()
-  
   const locations = useSelector((state) => state.Reducer.locations)
 
   useEffect(() => {

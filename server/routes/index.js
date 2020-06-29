@@ -17,7 +17,6 @@ router.get('/', async function (req, res, next) {
   let data = await getLoacation()
   res.json({ data })
 })
-
 router.get('/:id', async function (req, res, next) {
   let data = await getDevices(req.params.id)
   res.json({ data })

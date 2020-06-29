@@ -8,6 +8,7 @@ import Device from '../../components/Device'
 import './Location.scss'
 
 export default function Location() {
+  
   const devices = useSelector((state) => state.Reducer.devices)
   const location = useSelector((state) => state.Reducer.location)
 

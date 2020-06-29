@@ -120,9 +120,9 @@ async function getButtons(arr) {
       obj[i.id].stateIsOpen = isopen.rows[0].isopen
     }
   }
-
   return obj
 }
+
 async function powerChange(id, state) {
   await db.query(`
     UPDATE buttons.power SET power = '${state}'

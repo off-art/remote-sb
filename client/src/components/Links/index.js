@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Links() {
   const locations = useSelector((state) => state.Reducer.locations)
+  
   return (
     <div>
       <h1 className="App__title">Location Selection</h1>
